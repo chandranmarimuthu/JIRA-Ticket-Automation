@@ -1,0 +1,102 @@
+{
+  "name": "jira-ticket-creator",
+  "displayName": "Jira Ticket Creator",
+  "description": "Create Jira tickets in bulk using AI-powered field extraction via GitHub Copilot",
+  "version": "0.1.0",
+  "publisher": "Chandran",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jiraTicketCreator.openPanel",
+        "title": "Create Jira Ticket(s)",
+        "category": "Jira"
+      },
+      {
+        "command": "jiraTicketCreator.createFromSelection",
+        "title": "Create Jira Ticket from Selection",
+        "category": "Jira"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "jiraTicketCreator.createFromSelection",
+          "when": "editorHasSelection",
+          "group": "jiraTicketCreator"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Jira Ticket Creator",
+      "properties": {
+        "jiraTicketCreator.baseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Jira base URL (e.g., https://jira.mycompany.com or https://myorg.atlassian.net)"
+        },
+        "jiraTicketCreator.projectKey": {
+          "type": "string",
+          "default": "",
+          "description": "Default Jira project key (e.g., KODIAK)"
+        },
+        "jiraTicketCreator.defaultIssueType": {
+          "type": "string",
+          "default": "Bug",
+          "description": "Default issue type for new tickets"
+        },
+        "jiraTicketCreator.issueTypes": {
+          "type": "array",
+          "default": [
+            "Bug",
+            "Story",
+            "Task",
+            "Sub-task"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Available issue types shown in the UI"
+        },
+        "jiraTicketCreator.customFields": {
+          "type": "object",
+          "default": {},
+          "description": "Custom Jira fields to include (e.g., {\"customfield_10001\": \"default value\"})"
+        },
+        "jiraTicketCreator.promptTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Custom AI prompt template (leave empty for default). Use {issueTypes} and {description} as placeholders."
+        },
+        "jiraTicketCreator.defaultLabels": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "Labels automatically applied to every created ticket"
+        },
+        "jiraTicketCreator.defaultComponents": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "Components automatically applied to every created ticket"
+        },
+        "jiraTicketCreator.sendPriority": {
+          "type": "boolean",
+          "default": false,
+          "description": "Send priority field when creating tickets (disable if your Jira screen doesn't support it)"
+        }
+      }
+    }
+  }
+}
