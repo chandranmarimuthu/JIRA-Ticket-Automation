@@ -123,6 +123,4 @@ jira-ticket-creator/
 
 The `docs/copilot-agent-prompt.md` file contains a comprehensive specification for this extension. You can paste it into GitHub Copilot (Agent mode), Cursor, or any AI coding assistant to have it rebuild the entire extension from scratch — useful for forking, customizing, or porting to a different platform.
 
-## License
 
-Internal use — Motorola Solutions.
